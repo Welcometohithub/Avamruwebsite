@@ -59,6 +59,64 @@ body {
     line-height: 1.5;
 }
 
+/* Birds */
+.bird {
+    position: absolute;
+    width: 60px;
+    animation: fly 25s linear infinite;
+}
+
+.bird svg {
+    width: 60px;
+    height: 40px;
+}
+
+/* Wing animation */
+.wing {
+    transform-origin: center;
+    animation: flap 1s infinite ease-in-out;
+}
+
+@keyframes flap {
+    0% {
+        transform: rotate(10deg);
+    }
+    50% {
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(10deg);
+    }
+}
+
+/* Bird positions */
+.b1 {
+    top: 180px;
+    animation-duration: 24s;
+}
+.b2 {
+    top: 230px;
+    animation-duration: 30s;
+}
+.b3 {
+    top: 140px;
+    animation-duration: 27s;
+}
+.b4 {
+    top: 200px;
+    animation-duration: 22s;
+}
+
+/* Flight path */
+@keyframes fly {
+    from {
+        left: -100px;
+    }
+    to {
+        left: 110%;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .glass-card {

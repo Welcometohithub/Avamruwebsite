@@ -35,7 +35,11 @@
             position: relative;
             width: 100%;
             height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
+            padding: 1rem;
         }
 
         .moon {
@@ -88,33 +92,100 @@
 
         .birds {
             position: absolute;
-            top: 20%;
-            left: -10%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 3;
-            animation: flyToMoon 15s linear infinite;
+            pointer-events: none;
+            overflow: visible;
         }
 
         .bird {
             position: absolute;
-            width: 40px;
-            height: 40px;
-            background: transparent;
-            animation: flap 0.5s infinite ease-in-out;
+            width: 80px;
+            height: 50px;
         }
 
         .bird svg {
             width: 100%;
             height: 100%;
+            filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.4));
+        }
+
+        .wing {
+            transform-origin: 50px 35px;
+            animation: flap 1.2s infinite ease-in-out;
         }
 
         @keyframes flap {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(10deg); }
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-20deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(20deg); }
+            100% { transform: rotate(0deg); }
         }
 
-        @keyframes flyToMoon {
-            0% { transform: translateX(0); }
-            100% { transform: translate(100vw, -50px); }
+        .feather {
+            animation: floatFeather 2s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        .feather1 {
+            animation-delay: 0s;
+        }
+
+        .feather2 {
+            animation-delay: 0.4s;
+        }
+
+        .feather3 {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes floatFeather {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+            50% { transform: translateY(-4px) rotate(5deg); opacity: 0.8; }
+        }
+
+        .b1 {
+            top: 80px;
+            animation: flyBird1 45s linear infinite;
+        }
+        .b2 {
+            top: 180px;
+            animation: flyBird2 50s linear infinite;
+            animation-delay: 5s;
+        }
+        .b3 {
+            top: 130px;
+            animation: flyBird3 48s linear infinite;
+            animation-delay: 10s;
+        }
+        .b4 {
+            top: 220px;
+            animation: flyBird4 52s linear infinite;
+            animation-delay: 15s;
+        }
+
+        @keyframes flyBird1 {
+            0% { left: -80px; }
+            100% { left: calc(100vw + 80px); }
+        }
+
+        @keyframes flyBird2 {
+            0% { left: -80px; }
+            100% { left: calc(100vw + 80px); }
+        }
+
+        @keyframes flyBird3 {
+            0% { left: -80px; }
+            100% { left: calc(100vw + 80px); }
+        }
+
+        @keyframes flyBird4 {
+            0% { left: -80px; }
+            100% { left: calc(100vw + 80px); }
         }
 
         .glass-card {
@@ -172,12 +243,14 @@
             text-align: center;
             font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.7);
+            z-index: 5;
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .glass-card {
                 padding: 1.5rem;
+                max-width: 350px;
             }
 
             .logo {
@@ -192,12 +265,123 @@
                 font-size: 0.9rem;
             }
         }
+
+        @media (max-width: 768px) {
+            .glass-card {
+                padding: 1rem;
+                max-width: 300px;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .message {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .glass-card {
+                padding: 0.8rem;
+                max-width: 280px;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .message {
+                font-size: 0.7rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="hero">
         <div class="moon"></div>
         <div class="leaves" id="leaves"></div>
+        <div class="birds">
+            <!-- Bird 1 -->
+            <div class="bird b1">
+                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Wing -->
+                    <path class="wing" d="M20 35 Q50 10 70 35 Q60 45 50 40 Q40 45 30 35" fill="white" opacity="0.95"/>
+                    <!-- Body -->
+                    <ellipse cx="50" cy="38" rx="12" ry="10" fill="white"/>
+                    <!-- Head -->
+                    <circle cx="62" cy="33" r="6" fill="white"/>
+                    <!-- Eye -->
+                    <circle cx="64" cy="32" r="1.5" fill="#6a0572"/>
+                    <!-- Feathers -->
+                    <path class="feather feather1" d="M35 32 Q33 20 32 28" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather2" d="M42 30 Q40 15 39 25" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather3" d="M48 28 Q46 12 45 22" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                </svg>
+            </div>
+
+            <!-- Bird 2 -->
+            <div class="bird b2">
+                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Wing -->
+                    <path class="wing" d="M20 35 Q50 10 70 35 Q60 45 50 40 Q40 45 30 35" fill="white" opacity="0.95"/>
+                    <!-- Body -->
+                    <ellipse cx="50" cy="38" rx="12" ry="10" fill="white"/>
+                    <!-- Head -->
+                    <circle cx="62" cy="33" r="6" fill="white"/>
+                    <!-- Eye -->
+                    <circle cx="64" cy="32" r="1.5" fill="#6a0572"/>
+                    <!-- Feathers -->
+                    <path class="feather feather1" d="M35 32 Q33 20 32 28" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather2" d="M42 30 Q40 15 39 25" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather3" d="M48 28 Q46 12 45 22" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                </svg>
+            </div>
+
+            <!-- Bird 3 -->
+            <div class="bird b3">
+                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Wing -->
+                    <path class="wing" d="M20 35 Q50 10 70 35 Q60 45 50 40 Q40 45 30 35" fill="white" opacity="0.95"/>
+                    <!-- Body -->
+                    <ellipse cx="50" cy="38" rx="12" ry="10" fill="white"/>
+                    <!-- Head -->
+                    <circle cx="62" cy="33" r="6" fill="white"/>
+                    <!-- Eye -->
+                    <circle cx="64" cy="32" r="1.5" fill="#6a0572"/>
+                    <!-- Feathers -->
+                    <path class="feather feather1" d="M35 32 Q33 20 32 28" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather2" d="M42 30 Q40 15 39 25" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather3" d="M48 28 Q46 12 45 22" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                </svg>
+            </div>
+
+            <!-- Bird 4 -->
+            <div class="bird b4">
+                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Wing -->
+                    <path class="wing" d="M20 35 Q50 10 70 35 Q60 45 50 40 Q40 45 30 35" fill="white" opacity="0.95"/>
+                    <!-- Body -->
+                    <ellipse cx="50" cy="38" rx="12" ry="10" fill="white"/>
+                    <!-- Head -->
+                    <circle cx="62" cy="33" r="6" fill="white"/>
+                    <!-- Eye -->
+                    <circle cx="64" cy="32" r="1.5" fill="#6a0572"/>
+                    <!-- Feathers -->
+                    <path class="feather feather1" d="M35 32 Q33 20 32 28" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather2" d="M42 30 Q40 15 39 25" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather3" d="M48 28 Q46 12 45 22" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                </svg>
+            </div>
+        </div>
         <div class="glass-card">
             <h1 class="logo">AVAMRU</h1>
             <h2 class="subtitle">Big dreams are under construction.</h2>
