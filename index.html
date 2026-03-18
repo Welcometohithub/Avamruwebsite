@@ -18,19 +18,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #000000;
+            background: linear-gradient(135deg, #6a0572, #a4508b, #ff758c);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
             overflow: hidden;
             color: white;
         }
 
-        @keyframes rainbowGlow {
-            0% { border-color: #ff0080; box-shadow: 0 0 20px #ff0080, 0 0 40px #ff0080, inset 0 0 20px #ff0080; }
-            16% { border-color: #ff8c00; box-shadow: 0 0 20px #ff8c00, 0 0 40px #ff8c00, inset 0 0 20px #ff8c00; }
-            33% { border-color: #ffff00; box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00, inset 0 0 20px #ffff00; }
-            50% { border-color: #00ff00; box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00, inset 0 0 20px #00ff00; }
-            66% { border-color: #0080ff; box-shadow: 0 0 20px #0080ff, 0 0 40px #0080ff, inset 0 0 20px #0080ff; }
-            83% { border-color: #8000ff; box-shadow: 0 0 20px #8000ff, 0 0 40px #8000ff, inset 0 0 20px #8000ff; }
-            100% { border-color: #ff0080; box-shadow: 0 0 20px #ff0080, 0 0 40px #ff0080, inset 0 0 20px #ff0080; }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .hero {
@@ -217,74 +215,25 @@
         }
 
         .logo {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: bold;
-            margin-bottom: 2rem;
-            letter-spacing: 0.1em;
-            color: #ffffff;
-            text-transform: uppercase;
-        }
-
-        .tagline {
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            color: #ffffff;
-            opacity: 0.9;
-        }
-
-        .tagline p {
-            margin: 0.5rem 0;
+            margin-bottom: 1rem;
         }
 
         .subtitle {
-            display: none;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .message {
-            display: none;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
         }
 
-        .moon {
-            display: none;
-        }
-
-        .leaves {
-            display: none;
-        }
-
-        .birds {
-            display: none;
-        }
-
-        .glass-card {
-            display: none;
-        }
-
-        .centered-text {
-            display: none;
-        }
-
-        .neon-container {
-            padding: 3rem 4rem;
-            border: 3px solid #ff0080;
-            border-radius: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            animation: rainbowGlow 6s ease infinite;
-            text-align: center;
-            box-shadow: 0 0 30px #ff0080, inset 0 0 30px rgba(255, 0, 128, 0.2);
-        }
-
-        .digital-clock {
-            font-size: 4rem;
-            font-weight: 300;
-            letter-spacing: 0.15em;
-            font-family: 'Courier New', monospace;
-            color: #00ff00;
-            line-height: 1;
-            font-variant-numeric: tabular-nums;
-            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+        .date-time {
+            font-size: 1rem;
+            margin-top: 1rem;
         }
 
         footer {
@@ -298,70 +247,177 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .glass-card {
+                padding: 1.5rem;
+                max-width: 350px;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .message {
+                font-size: 0.9rem;
+            }
+        }
+
         @media (max-width: 768px) {
-            .neon-container {
-                padding: 2rem 2.5rem;
+            .glass-card {
+                padding: 1rem;
+                max-width: 300px;
             }
 
             .logo {
                 font-size: 2rem;
-                margin-bottom: 1.5rem;
             }
 
-            .digital-clock {
-                font-size: 3rem;
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .message {
+                font-size: 0.8rem;
             }
         }
 
-        @media (max-width: 480px) {
-            .neon-container {
-                padding: 1.5rem 2rem;
+        @media (max-width: 375px) {
+            .glass-card {
+                padding: 0.8rem;
+                max-width: 280px;
             }
 
             .logo {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
+                font-size: 1.8rem;
             }
 
-            .digital-clock {
-                font-size: 2.5rem;
+            .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .message {
+                font-size: 0.7rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="hero">
-        <div class="neon-container">
-            <h1 class="logo">A V A M R U</h1>
-            <div class="tagline">
-                <p>Big dreams are under construction.</p>
-                <p>Driven by innovation. Built with purpose.</p>
-                <p>Coming Soon</p>
-                <p>United States of America</p>
+        <div class="moon"></div>
+        <div class="leaves" id="leaves"></div>
+        <div class="birds">
+            <!-- Bird 1 -->
+            <div class="bird b1">
+                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Wing -->
+                    <path class="wing" d="M20 35 Q50 10 70 35 Q60 45 50 40 Q40 45 30 35" fill="white" opacity="0.95"/>
+                    <!-- Body -->
+                    <ellipse cx="50" cy="38" rx="12" ry="10" fill="white"/>
+                    <!-- Head -->
+                    <circle cx="62" cy="33" r="6" fill="white"/>
+                    <!-- Eye -->
+                    <circle cx="64" cy="32" r="1.5" fill="#6a0572"/>
+                    <!-- Feathers -->
+                    <path class="feather feather1" d="M35 32 Q33 20 32 28" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather2" d="M42 30 Q40 15 39 25" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather3" d="M48 28 Q46 12 45 22" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                </svg>
             </div>
-            <div class="digital-clock" id="digital-clock">00:00:00 AM</div>
+
+            <!-- Bird 2 -->
+            <div class="bird b2">
+                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Wing -->
+                    <path class="wing" d="M20 35 Q50 10 70 35 Q60 45 50 40 Q40 45 30 35" fill="white" opacity="0.95"/>
+                    <!-- Body -->
+                    <ellipse cx="50" cy="38" rx="12" ry="10" fill="white"/>
+                    <!-- Head -->
+                    <circle cx="62" cy="33" r="6" fill="white"/>
+                    <!-- Eye -->
+                    <circle cx="64" cy="32" r="1.5" fill="#6a0572"/>
+                    <!-- Feathers -->
+                    <path class="feather feather1" d="M35 32 Q33 20 32 28" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather2" d="M42 30 Q40 15 39 25" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather3" d="M48 28 Q46 12 45 22" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                </svg>
+            </div>
+
+            <!-- Bird 3 -->
+            <div class="bird b3">
+                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Wing -->
+                    <path class="wing" d="M20 35 Q50 10 70 35 Q60 45 50 40 Q40 45 30 35" fill="white" opacity="0.95"/>
+                    <!-- Body -->
+                    <ellipse cx="50" cy="38" rx="12" ry="10" fill="white"/>
+                    <!-- Head -->
+                    <circle cx="62" cy="33" r="6" fill="white"/>
+                    <!-- Eye -->
+                    <circle cx="64" cy="32" r="1.5" fill="#6a0572"/>
+                    <!-- Feathers -->
+                    <path class="feather feather1" d="M35 32 Q33 20 32 28" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather2" d="M42 30 Q40 15 39 25" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather3" d="M48 28 Q46 12 45 22" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                </svg>
+            </div>
+
+            <!-- Bird 4 -->
+            <div class="bird b4">
+                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Wing -->
+                    <path class="wing" d="M20 35 Q50 10 70 35 Q60 45 50 40 Q40 45 30 35" fill="white" opacity="0.95"/>
+                    <!-- Body -->
+                    <ellipse cx="50" cy="38" rx="12" ry="10" fill="white"/>
+                    <!-- Head -->
+                    <circle cx="62" cy="33" r="6" fill="white"/>
+                    <!-- Eye -->
+                    <circle cx="64" cy="32" r="1.5" fill="#6a0572"/>
+                    <!-- Feathers -->
+                    <path class="feather feather1" d="M35 32 Q33 20 32 28" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather2" d="M42 30 Q40 15 39 25" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path class="feather feather3" d="M48 28 Q46 12 45 22" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+                </svg>
+            </div>
+        </div>
+        <div class="glass-card">
+            <h1 class="logo">A V A M R U</h1>
+            <h2 class="subtitle">Big dreams are under construction.</h2>
+            <p class="message">
+                We are excited to finally be online.<br>
+                We are building with big dreams and a strong vision to serve better and create a better future.<br>
+                Stay tuned for something meaningful.<br>
+                <br>
+                 United States Of America.
+            </p>
+            <div class="date-time" id="date-time"></div>
         </div>
         <footer>© 2026 AVAMRU. All rights reserved.</footer>
     </div>
     <script>
-        // Digital Clock Implementation
-        const digitalClockElement = document.getElementById('digital-clock');
-
-        function updateDigitalClock() {
-            const now = new Date();
-            let hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            hours = hours % 12;
-            hours = hours ? hours : 12; // 0 should be 12
-            hours = String(hours).padStart(2, '0');
-            digitalClockElement.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+        // Generate leaves
+        const leavesContainer = document.getElementById('leaves');
+        for (let i = 0; i < 50; i++) {
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+            leaf.style.left = `${Math.random() * 100}%`;
+            leaf.style.animationDelay = `${Math.random() * 5}s`;
+            leaf.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            leavesContainer.appendChild(leaf);
         }
 
-        // Initialize and update every second
-        updateDigitalClock();
-        setInterval(updateDigitalClock, 1000);
+        // Update date and time
+        const dateTimeElement = document.getElementById('date-time');
+        function updateDateTime() {
+            const now = new Date();
+            const date = now.toLocaleDateString();
+            const time = now.toLocaleTimeString();
+            dateTimeElement.textContent = `${date} | ${time}`;
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
     </script>
 </body>
 </html>
