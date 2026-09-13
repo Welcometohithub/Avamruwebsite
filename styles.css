@@ -1437,8 +1437,11 @@ pre {
         min-height: auto;
     }
 
-    .hero-art {
+    .hero-content {
         order: -1;
+    }
+
+    .hero-art {
         min-height: 420px;
     }
 
