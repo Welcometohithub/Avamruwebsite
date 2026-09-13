@@ -244,6 +244,7 @@ main {
 .hero-content {
     position: relative;
     z-index: 2;
+    min-width: 0;
 }
 
 .eyebrow {
@@ -292,6 +293,7 @@ h1 {
 
 .request-search {
     position: relative;
+    width: 100%;
     max-width: 780px;
     display: grid;
     grid-template-columns: 1fr auto;
@@ -361,6 +363,8 @@ h1 {
 }
 
 .suggestions {
+    width: 100%;
+    max-width: 780px;
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
@@ -393,6 +397,7 @@ h1 {
 
 .life-ribbon {
     position: relative;
+    width: 100%;
     max-width: 780px;
     margin-top: 1.6rem;
     overflow: hidden;
