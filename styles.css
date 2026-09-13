@@ -1507,12 +1507,12 @@ pre {
     }
 
     .hero-art {
-        min-height: 360px;
+        min-height: 520px;
         border-radius: 30px;
     }
 
     .path-card {
-        width: 56%;
+        width: min(270px, calc(100% - 44px));
         padding: 0.8rem;
     }
 
@@ -1524,17 +1524,17 @@ pre {
 
     .card-a {
         top: 42px;
-        left: 20px;
+        left: 22px;
     }
 
     .card-b {
-        top: 158px;
-        right: 18px;
+        top: 200px;
+        right: 22px;
     }
 
     .card-c {
-        left: 26px;
-        bottom: 36px;
+        left: 22px;
+        bottom: 42px;
     }
 
     .connecting-line {
@@ -1565,11 +1565,11 @@ pre {
     }
 
     .hero-art {
-        min-height: 330px;
+        min-height: 500px;
     }
 
     .path-card {
-        width: 62%;
+        width: min(260px, calc(100% - 36px));
     }
 
     .draft-panel {
