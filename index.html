@@ -3,421 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVAMRU - Coming Soon</title>
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #6a0572, #a4508b, #ff758c);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
-            overflow: hidden;
-            color: white;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            padding: 1rem;
-        }
-
-        .moon {
-            position: absolute;
-            top: 10%;
-            left: -10%;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, #fff, #ddd);
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            z-index: 1;
-            animation: moveMoon 20s linear infinite;
-        }
-
-        @keyframes moveMoon {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(120vw); }
-        }
-
-        .leaves {
-            position: absolute;
-            top: -10%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            overflow: hidden;
-        }
-
-        .leaf {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            animation: fall 5s linear infinite;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .birds {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 3;
-            pointer-events: none;
-            overflow: visible;
-        }
-
-        .bird {
-            position: absolute;
-            width: 80px;
-            height: 50px;
-        }
-
-        .bird svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.4));
-        }
-
-        .wing {
-            transform-origin: 50px 35px;
-            animation: flap 1.2s infinite ease-in-out;
-        }
-
-        @keyframes flap {
-            0% { transform: rotate(0deg); }
-            25% { transform: rotate(-20deg); }
-            50% { transform: rotate(0deg); }
-            75% { transform: rotate(20deg); }
-            100% { transform: rotate(0deg); }
-        }
-
-        .feather {
-            animation: floatFeather 2s infinite ease-in-out;
-            opacity: 0.6;
-        }
-
-        .feather1 {
-            animation-delay: 0s;
-        }
-
-        .feather2 {
-            animation-delay: 0.4s;
-        }
-
-        .feather3 {
-            animation-delay: 0.8s;
-        }
-
-        @keyframes floatFeather {
-            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
-            50% { transform: translateY(-4px) rotate(5deg); opacity: 0.8; }
-        }
-
-        .b1 {
-            top: 80px;
-            animation: flyBird1 45s linear infinite;
-        }
-        .b2 {
-            top: 180px;
-            animation: flyBird2 50s linear infinite;
-            animation-delay: 5s;
-        }
-        .b3 {
-            top: 130px;
-            animation: flyBird3 48s linear infinite;
-            animation-delay: 10s;
-        }
-        .b4 {
-            top: 220px;
-            animation: flyBird4 52s linear infinite;
-            animation-delay: 15s;
-        }
-
-        @keyframes flyBird1 {
-            0% { left: -80px; }
-            100% { left: calc(100vw + 80px); }
-        }
-
-        @keyframes flyBird2 {
-            0% { left: -80px; }
-            100% { left: calc(100vw + 80px); }
-        }
-
-        @keyframes flyBird3 {
-            0% { left: -80px; }
-            100% { left: calc(100vw + 80px); }
-        }
-
-        @keyframes flyBird4 {
-            0% { left: -80px; }
-            100% { left: calc(100vw + 80px); }
-        }
-
-        .glass-card {
-            position: relative;
-            z-index: 4;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 2rem;
-            text-align: center;
-            max-width: 400px;
-            margin: auto;
-            animation: fadeIn 2s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .logo {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .message {
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-bottom: 1rem;
-        }
-
-        .date-time {
-            font-size: 1rem;
-            margin-top: 1rem;
-        }
-
-        footer {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
-            z-index: 5;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .glass-card {
-                padding: 1.5rem;
-                max-width: 350px;
-            }
-
-            .logo {
-                font-size: 2.5rem;
-            }
-
-            .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .message {
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .glass-card {
-                padding: 1rem;
-                max-width: 300px;
-            }
-
-            .logo {
-                font-size: 2rem;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-            }
-
-            .message {
-                font-size: 0.8rem;
-            }
-        }
-
-        @media (max-width: 375px) {
-            .glass-card {
-                padding: 0.8rem;
-                max-width: 280px;
-            }
-
-            .logo {
-                font-size: 1.8rem;
-            }
-
-            .subtitle {
-                font-size: 0.9rem;
-            }
-
-            .message {
-                font-size: 0.7rem;
-            }
-        }
-    </style>
+    <meta name="description" content="AVAMRU helps people begin any request, from one word to a fully formed idea.">
+    <title>AVAMRU | Anything on your mind?</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%235b2a86'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial' font-size='34' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="hero">
-        <div class="moon"></div>
-        <div class="leaves" id="leaves"></div>
-        <div class="birds">
-            <!-- Bird 1 -->
-            <div class="bird b1">
-                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Wing -->
-                    <path class="wing" d="M20 35 Q50 10 70 35 Q60 45 50 40 Q40 45 30 35" fill="white" opacity="0.95"/>
-                    <!-- Body -->
-                    <ellipse cx="50" cy="38" rx="12" ry="10" fill="white"/>
-                    <!-- Head -->
-                    <circle cx="62" cy="33" r="6" fill="white"/>
-                    <!-- Eye -->
-                    <circle cx="64" cy="32" r="1.5" fill="#6a0572"/>
-                    <!-- Feathers -->
-                    <path class="feather feather1" d="M35 32 Q33 20 32 28" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
-                    <path class="feather feather2" d="M42 30 Q40 15 39 25" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
-                    <path class="feather feather3" d="M48 28 Q46 12 45 22" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
-                </svg>
-            </div>
-
-            <!-- Bird 2 -->
-            <div class="bird b2">
-                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Wing -->
-                    <path class="wing" d="M20 35 Q50 10 70 35 Q60 45 50 40 Q40 45 30 35" fill="white" opacity="0.95"/>
-                    <!-- Body -->
-                    <ellipse cx="50" cy="38" rx="12" ry="10" fill="white"/>
-                    <!-- Head -->
-                    <circle cx="62" cy="33" r="6" fill="white"/>
-                    <!-- Eye -->
-                    <circle cx="64" cy="32" r="1.5" fill="#6a0572"/>
-                    <!-- Feathers -->
-                    <path class="feather feather1" d="M35 32 Q33 20 32 28" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
-                    <path class="feather feather2" d="M42 30 Q40 15 39 25" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
-                    <path class="feather feather3" d="M48 28 Q46 12 45 22" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
-                </svg>
-            </div>
-
-            <!-- Bird 3 -->
-            <div class="bird b3">
-                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Wing -->
-                    <path class="wing" d="M20 35 Q50 10 70 35 Q60 45 50 40 Q40 45 30 35" fill="white" opacity="0.95"/>
-                    <!-- Body -->
-                    <ellipse cx="50" cy="38" rx="12" ry="10" fill="white"/>
-                    <!-- Head -->
-                    <circle cx="62" cy="33" r="6" fill="white"/>
-                    <!-- Eye -->
-                    <circle cx="64" cy="32" r="1.5" fill="#6a0572"/>
-                    <!-- Feathers -->
-                    <path class="feather feather1" d="M35 32 Q33 20 32 28" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
-                    <path class="feather feather2" d="M42 30 Q40 15 39 25" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
-                    <path class="feather feather3" d="M48 28 Q46 12 45 22" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
-                </svg>
-            </div>
-
-            <!-- Bird 4 -->
-            <div class="bird b4">
-                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Wing -->
-                    <path class="wing" d="M20 35 Q50 10 70 35 Q60 45 50 40 Q40 45 30 35" fill="white" opacity="0.95"/>
-                    <!-- Body -->
-                    <ellipse cx="50" cy="38" rx="12" ry="10" fill="white"/>
-                    <!-- Head -->
-                    <circle cx="62" cy="33" r="6" fill="white"/>
-                    <!-- Eye -->
-                    <circle cx="64" cy="32" r="1.5" fill="#6a0572"/>
-                    <!-- Feathers -->
-                    <path class="feather feather1" d="M35 32 Q33 20 32 28" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
-                    <path class="feather feather2" d="M42 30 Q40 15 39 25" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
-                    <path class="feather feather3" d="M48 28 Q46 12 45 22" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
-                </svg>
-            </div>
-        </div>
-        <div class="glass-card">
-            <h1 class="logo">A V A M R U</h1>
-            <h2 class="subtitle">Big dreams are under construction.</h2>
-            <p class="message">
-                We are excited to finally be online.<br>
-                We are building with big dreams and a strong vision to serve better and create a better future.<br>
-                Stay tuned for something meaningful.<br>
-                <br>
-                 United States Of America.
-            </p>
-            <div class="date-time" id="date-time"></div>
-        </div>
-        <footer>© 2026 AVAMRU. All rights reserved.</footer>
+    <a class="skip-link" href="#request">Skip to request</a>
+    <div class="ambient-stage" aria-hidden="true">
+        <span class="ambient-orb orb-one"></span>
+        <span class="ambient-orb orb-two"></span>
+        <span class="ambient-orb orb-three"></span>
+        <span class="ambient-thread thread-one"></span>
+        <span class="ambient-thread thread-two"></span>
     </div>
-    <script>
-        // Generate leaves
-        const leavesContainer = document.getElementById('leaves');
-        for (let i = 0; i < 50; i++) {
-            const leaf = document.createElement('div');
-            leaf.classList.add('leaf');
-            leaf.style.left = `${Math.random() * 100}%`;
-            leaf.style.animationDelay = `${Math.random() * 5}s`;
-            leaf.style.animationDuration = `${Math.random() * 5 + 5}s`;
-            leavesContainer.appendChild(leaf);
-        }
 
-        // Update date and time
-        const dateTimeElement = document.getElementById('date-time');
-        function updateDateTime() {
-            const now = new Date();
-            const date = now.toLocaleDateString();
-            const time = now.toLocaleTimeString();
-            dateTimeElement.textContent = `${date} | ${time}`;
-        }
-        setInterval(updateDateTime, 1000);
-        updateDateTime();
-    </script>
+    <header class="site-header">
+        <nav class="nav" aria-label="Primary navigation">
+            <a class="brand" href="#top" aria-label="AVAMRU home">
+                <span class="brand-mark" aria-hidden="true">A</span>
+                <span>AVAMRU</span>
+            </a>
+            <div class="nav-links">
+                <a href="#how-it-works">How it works</a>
+                <a href="#partner">Become a partner</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-art" aria-hidden="true">
+                <div class="signal-map">
+                    <span class="signal-dot dot-one"></span>
+                    <span class="signal-dot dot-two"></span>
+                    <span class="signal-dot dot-three"></span>
+                    <span class="signal-dot dot-four"></span>
+                </div>
+                <div class="halo halo-one"></div>
+                <div class="halo halo-two"></div>
+                <div class="floating-chip chip-one">family</div>
+                <div class="floating-chip chip-two">home</div>
+                <div class="floating-chip chip-three">health</div>
+                <div class="floating-chip chip-four">dreams</div>
+                <div class="path-card card-a">
+                    <span></span>
+                    <strong>Need</strong>
+                    <small>Start anywhere</small>
+                </div>
+                <div class="path-card card-b">
+                    <span></span>
+                    <strong>Details</strong>
+                    <small>Shape the request</small>
+                </div>
+                <div class="path-card card-c">
+                    <span></span>
+                    <strong>Options</strong>
+                    <small>Explore next steps</small>
+                </div>
+                <div class="connecting-line"></div>
+            </div>
+
+            <div class="hero-content">
+                <p class="eyebrow">One place to begin</p>
+                <h1 id="hero-title">Anything on your mind?</h1>
+                <p class="hero-copy">Something you need. Something you imagine. Big or small, ordinary or out of the blue. Start here.</p>
+
+                <form class="request-search" id="quickRequestForm" aria-label="Start a request">
+                    <span id="request" class="anchor-target"></span>
+                    <label class="sr-only" for="quickRequest">One word. One idea. What do you need?</label>
+                    <input id="quickRequest" name="request" type="text" autocomplete="off" placeholder="One word. One idea. What do you need?" required>
+                    <button type="submit">Let&apos;s find a way.</button>
+                </form>
+
+                <p class="suggestion-helper">Pick a starting point, or type anything you need or imagine.</p>
+                <div class="suggestions" aria-label="Request suggestions">
+                    <button type="button" data-suggestion="family and home">Family &amp; home</button>
+                    <button type="button" data-suggestion="health and wellness">Health &amp; wellness</button>
+                    <button type="button" data-suggestion="car and travel">Car &amp; travel</button>
+                    <button type="button" data-suggestion="work and business">Work &amp; business</button>
+                    <button type="button" data-suggestion="products and shopping">Products &amp; shopping</button>
+                    <button type="button" data-suggestion="events and celebrations">Events &amp; celebrations</button>
+                    <button type="button" data-suggestion="style and design">Style &amp; design</button>
+                    <button type="button" data-suggestion="money and planning">Money &amp; planning</button>
+                    <button type="button" data-suggestion="dream ideas">Dream ideas</button>
+                    <button type="button" data-suggestion="anything else">Anything else</button>
+                </div>
+
+                <div class="life-ribbon" aria-hidden="true">
+                    <div class="ribbon-track">
+                        <span>Family</span>
+                        <span>Home</span>
+                        <span>Health</span>
+                        <span>Car</span>
+                        <span>Work</span>
+                        <span>Shopping</span>
+                        <span>Events</span>
+                        <span>Travel</span>
+                        <span>Design</span>
+                        <span>Dream ideas</span>
+                        <span>Family</span>
+                        <span>Home</span>
+                        <span>Health</span>
+                        <span>Car</span>
+                        <span>Work</span>
+                        <span>Shopping</span>
+                        <span>Events</span>
+                        <span>Travel</span>
+                        <span>Design</span>
+                        <span>Dream ideas</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="inspiration" aria-labelledby="inspiration-title">
+            <div class="section-heading">
+                <p class="eyebrow">Inspiration</p>
+                <h2 id="inspiration-title">Start with whatever you have.</h2>
+            </div>
+
+            <div class="card-grid">
+                <article class="inspiration-card">
+                    <div class="illustration everyday" aria-hidden="true">
+                        <span class="sun"></span>
+                        <span class="house"></span>
+                        <span class="spark spark-one"></span>
+                    </div>
+                    <h3>Daily life</h3>
+                    <p>Start with family, home, health, errands, repairs, transportation, shopping, or practical help.</p>
+                </article>
+
+                <article class="inspiration-card">
+                    <div class="illustration product" aria-hidden="true">
+                        <span class="box"></span>
+                        <span class="magnifier"></span>
+                        <span class="spark spark-two"></span>
+                    </div>
+                    <h3>Big moments</h3>
+                    <p>Plan weddings, parties, events, travel, business needs, financial planning, dream homes, or dream cars.</p>
+                </article>
+
+                <article class="inspiration-card">
+                    <div class="illustration idea" aria-hidden="true">
+                        <span class="bulb"></span>
+                        <span class="brush"></span>
+                        <span class="spark spark-three"></span>
+                    </div>
+                    <h3>Personal dreams</h3>
+                    <p>Bring style, design, custom clothes, creative projects, product ideas, or anything you cannot easily name yet.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="how" id="how-it-works" aria-labelledby="how-title">
+            <div class="section-heading">
+                <p class="eyebrow">How it works</p>
+                <h2 id="how-title">A request becomes clearer step by step.</h2>
+            </div>
+            <div class="steps">
+                <article>
+                    <span>1</span>
+                    <h3>Tell us</h3>
+                    <p>Type a word, a question, a problem, or a rough idea.</p>
+                </article>
+                <article>
+                    <span>2</span>
+                    <h3>Clarify the details</h3>
+                    <p>Add helpful context like location, timing, and budget when you have it.</p>
+                </article>
+                <article>
+                    <span>3</span>
+                    <h3>Explore suitable options</h3>
+                    <p>Use the draft summary as a clean starting point for the next step.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="partner" id="partner" aria-labelledby="partner-title">
+            <div>
+                <p class="eyebrow">Become a partner</p>
+                <h2 id="partner-title">Help people move from "I need..." to "I found a way."</h2>
+            </div>
+            <a class="partner-link" href="mailto:hello@avamru.com?subject=AVAMRU%20partner%20interest">Start a conversation</a>
+        </section>
+    </main>
+
+    <div class="draft-panel" id="draftPanel" hidden>
+        <div class="draft-backdrop" data-close-draft></div>
+        <section class="draft-dialog" role="dialog" aria-modal="true" aria-labelledby="draftTitle" aria-describedby="draftIntro" tabindex="-1">
+            <button class="icon-button" type="button" data-close-draft aria-label="Close request draft">&times;</button>
+            <div class="draft-header">
+                <p class="eyebrow">Request draft</p>
+                <h2 id="draftTitle">Shape your starting request</h2>
+                <p id="draftIntro">This creates a draft only. It has not been sent, and AVAMRU has not connected providers, payments, or bookings from this page.</p>
+            </div>
+
+            <form class="draft-form" id="draftForm">
+                <label>
+                    <span>Request</span>
+                    <textarea id="draftRequest" rows="4" required></textarea>
+                </label>
+                <div class="form-grid">
+                    <label>
+                        <span>Location <small>optional</small></span>
+                        <input id="draftLocation" type="text" placeholder="City, area, or wherever it applies">
+                    </label>
+                    <label>
+                        <span>Timing <small>optional</small></span>
+                        <input id="draftTiming" type="text" placeholder="Today, this week, flexible...">
+                    </label>
+                    <label>
+                        <span>Budget <small>optional</small></span>
+                        <input id="draftBudget" type="text" placeholder="A range, limit, or not sure yet">
+                    </label>
+                </div>
+            </form>
+
+            <div class="summary-box" aria-live="polite">
+                <div class="summary-heading">
+                    <h3>Summary</h3>
+                    <button type="button" id="copySummary">Copy</button>
+                </div>
+                <pre id="requestSummary"></pre>
+                <p class="copy-status" id="copyStatus" aria-live="polite"></p>
+            </div>
+        </section>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 AVAMRU. Start with anything.</p>
+        <a href="#top">Back to top</a>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
